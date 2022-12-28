@@ -23,7 +23,7 @@ resource "aws_elasticache_parameter_group" "redis" {
 # #
 resource "aws_elasticache_replication_group" "redis" {
   replication_group_id          = lower(local.redis_cluster_name)
-  description = "${var.env}-redis"
+  description = "${var.environment}-redis"
   automatic_failover_enabled    = var.automatic_failover_enabled
   multi_az_enabled              = var.multi_az_enabled
   #availability_zones            =  var.availability_zones == [] ? null : var.availability_zones
