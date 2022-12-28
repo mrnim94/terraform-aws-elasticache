@@ -1,6 +1,6 @@
 # terraform-aws-elasticache
 
-## Case 1: Get VPC ID and Subnet Private for Remote State
+## Case 1: Get VPC ID and Subnet Private for Remote State  then Create elasticache subnet group
 
 ```hcl
 variable "aws_region" {
