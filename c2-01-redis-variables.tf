@@ -95,3 +95,9 @@ variable "elasticache_subnet_group_name" {
   description = "- (Required) Name of the cache subnet group to be used for the replication group."
 }
 
+variable "vpc_id" {
+  type = string
+  default = "Unknown"
+  description = "- (Required) The ID of the VPC is to create Security Group."
+}
+

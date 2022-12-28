@@ -2,7 +2,7 @@
 # Security group resources
 #
 resource "aws_security_group" "redis" {
-  vpc_id = module.vpc.vpc_id
+  vpc_id = var.vpc_id
 
   ingress {
     from_port   = 6379
