@@ -36,7 +36,7 @@ module "elasticache" {
   aws_region = var.aws_region
   business_divsion = "nimtechnology"
   environment = "dev"
-  desired_clusters = "2"
+  num_nodes = "2"
   elasticache_subnet_group_name = aws_elasticache_subnet_group.redis.name
   engine_version = "5.0.6"
   family = "redis5.0"
@@ -69,7 +69,7 @@ module "elasticache" {
   aws_region = var.aws_region
   business_divsion = "nimtechnology"
   environment = "dev"
-  desired_clusters = "2"
+  num_nodes = "2"
   elasticache_subnet_group_name = data.terraform_remote_state.vpc.outputs.elasticache_subnet_group_name
   engine_version = "5.0.6"
   family = "redis5.0"

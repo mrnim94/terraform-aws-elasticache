@@ -29,7 +29,7 @@ resource "aws_elasticache_replication_group" "redis" {
   #availability_zones            =  var.availability_zones == [] ? null : var.availability_zones
 #   preferred_cache_cluster_azs  = module.vpc.azs
 
-  num_cache_clusters         = var.desired_clusters
+  num_cache_clusters         = var.num_nodes
   node_type                     = var.instance_type
   engine_version                = var.engine_version
   parameter_group_name          = aws_elasticache_parameter_group.redis.name
@@ -59,7 +59,7 @@ resource "aws_elasticache_replication_group" "redis" {
 # CloudWatch resources
 #
 resource "aws_cloudwatch_metric_alarm" "cache_cpu" {
-  count = var.desired_clusters
+  count = var.num_nodes
 
   alarm_name          = "alarm${var.environment}CacheCluster00${count.index + 1}CPUUtilization"
   alarm_description   = "Redis cluster CPU utilization"
@@ -81,7 +81,7 @@ resource "aws_cloudwatch_metric_alarm" "cache_cpu" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "cache_memory" {
-  count = var.desired_clusters
+  count = var.num_nodes
 
   alarm_name          = "alarm${var.environment}CacheCluster00${count.index + 1}FreeableMemory"
   alarm_description   = "Redis cluster freeable memory"

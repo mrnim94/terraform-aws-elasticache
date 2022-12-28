@@ -49,9 +49,9 @@ variable "alarm_cpu_threshold" {
 }
 
 //checked
-variable "desired_clusters" {
+variable "num_nodes" {
   default = "3"
-  description = "- (Optional) Number of cache clusters (primary and replicas) this replication group will have. If Multi-AZ is enabled, the value of this parameter must be at least 2. Updates will occur before other modifications. Conflicts with num_node_groups, the deprecatednumber_cache_clusters, or the deprecated cluster_mode."
+  description = "- (Optional) Number nodes of cache clusters (primary and replicas) this replication group will have. If Multi-AZ is enabled, the value of this parameter must be at least 2. Updates will occur before other modifications. Conflicts with num_node_groups, the deprecatednumber_cache_clusters, or the deprecated cluster_mode."
 }
 
 //checked
