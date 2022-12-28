@@ -23,6 +23,11 @@ resource "aws_elasticache_subnet_group" "redis" {
   name       = "subnet-group-redis"
   subnet_ids = data.terraform_remote_state.vpc.outputs.private_subnets
 }
+# Format of private_subnets
+# private_subnets = [
+#   "subnet-051bfca62cf56dd6c",
+#   "subnet-01b8402ea9961ff1c",
+# ]
 
 module "elasticache" {
   source  = "mrnim94/elasticache/aws"
