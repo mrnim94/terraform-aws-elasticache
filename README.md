@@ -77,3 +77,7 @@ module "elasticache" {
   vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
 }
 ```
+
+I have a post to explain much knowledge about Redis or Elasticache.
+
+[![Image](https://nimtechnology.com/wp-content/uploads/2022/12/image-174.png "[ElastiCache] Provisioning Redis on AWS so quickly by terraform. ")](https://nimtechnology.com/2022/12/29/elasticache-provisioning-redis-on-aws-so-quickly-by-terraform/)
