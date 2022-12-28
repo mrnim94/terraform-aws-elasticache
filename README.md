@@ -44,3 +44,36 @@ module "elasticache" {
   vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
 }
 ```
+
+
+## Case 2: Get elasticache subnets from VPC Module
+
+I have used VPC Module and also created elasticache_subnets via VPC Module.
+So we don't need to create aws_elasticache_subnet_group. 
+
+```hcl
+# Terraform Remote State Datasource - Remote Backend AWS S3
+data "terraform_remote_state" "vpc" {
+  backend = "s3"
+  config = {
+    bucket = "terraform-on-aws-eks-nim"
+    key    = "dev/vpc-redis-2/terraform.tfstate"
+    region = var.aws_region
+  }
+}
+
+module "elasticache" {
+  source  = "mrnim94/elasticache/aws"
+  version = "0.0.5"
+
+  aws_region = var.aws_region
+  business_divsion = "nimtechnology"
+  environment = "dev"
+  desired_clusters = "2"
+  elasticache_subnet_group_name = data.terraform_remote_state.vpc.outputs.elasticache_subnet_group_name
+  engine_version = "5.0.6"
+  family = "redis5.0"
+  instance_type = "cache.t2.micro"
+  vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
+}
+```
