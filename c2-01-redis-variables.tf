@@ -28,7 +28,7 @@ variable "family" {
 //checked
 variable "automatic_failover_enabled" {
   default = true
-  description = "- (Optional) Specifies whether a read-only replica will be automatically promoted to read/write primary if the existing primary fails. If enabled, num_cache_clusters must be greater than 1. Must be enabled for Redis (cluster mode enabled) replication groups. Defaults to true."
+  description = "- (Optional) Specifies whether a read-only replica will be automatically promoted to read/write primary if the existing primary fails. If enabled, num_cache_clusters must be greater than 1. Must be enabled for Redis (cluster mode enabled) replication groups."
 }
 
 //checked
@@ -51,25 +51,25 @@ variable "alarm_cpu_threshold" {
 //checked
 variable "desired_clusters" {
   default = "3"
-  description = "- (Optional) Number of cache clusters (primary and replicas) this replication group will have. If Multi-AZ is enabled, the value of this parameter must be at least 2. Updates will occur before other modifications. Conflicts with num_node_groups, the deprecatednumber_cache_clusters, or the deprecated cluster_mode. Defaults to 3"
+  description = "- (Optional) Number of cache clusters (primary and replicas) this replication group will have. If Multi-AZ is enabled, the value of this parameter must be at least 2. Updates will occur before other modifications. Conflicts with num_node_groups, the deprecatednumber_cache_clusters, or the deprecated cluster_mode."
 }
 
 //checked
 variable "instance_type" {
   default = "cache.t2.micro"
-  description = "(Optional) Instance class to be used. See AWS documentation for information on supported node types and guidance on selecting node types. Required unless global_replication_group_id is set. Cannot be set if global_replication_group_id is set. Defaults to cache.t2.micro"
+  description = "(Optional) Instance class to be used. See AWS documentation for information on supported node types and guidance on selecting node types. Required unless global_replication_group_id is set. Cannot be set if global_replication_group_id is set."
 }
 
 //checked
 variable "engine_version" {
   default = "5.0.6"
-  description = "- (Optional) Version number of the cache engine to be used for the cache clusters in this replication group. Default to 5.0.6"
+  description = "- (Optional) Version number of the cache engine to be used for the cache clusters in this replication group."
 }
 
 //checked
 variable "maintenance_window" {
   default = "sun:02:30-sun:03:30"
-  description = "– (Optional) Specifies the weekly time range for when maintenance on the cache cluster is performed. The format is ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period. Example: sun:05:00-sun:09:00. Default to sun:02:30-sun:03:30"
+  description = "– (Optional) Specifies the weekly time range for when maintenance on the cache cluster is performed. The format is ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period. Example: sun:05:00-sun:09:00."
 }
 
 //checked
@@ -92,6 +92,6 @@ variable "transit_encryption_enabled" {
 variable "elasticache_subnet_group_name" {
   type = string
   default = "Unknown"
-  description = "Name of the cache subnet group to be used for the replication group."
+  description = "- (Required) Name of the cache subnet group to be used for the replication group."
 }
 
