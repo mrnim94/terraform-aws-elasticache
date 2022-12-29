@@ -113,3 +113,10 @@ variable "private_subnets" {
   description = "- (Optional) A list of private subnets inside the VPC."
   default = []
 }
+
+variable "global_datastore" {
+  type = bool
+  default = false
+  description = "- (Optional) Provides an ElastiCache Global Replication Group resource, which manages replication between two or more Replication Groups in different regions."
+}
+

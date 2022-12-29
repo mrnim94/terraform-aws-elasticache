@@ -31,7 +31,7 @@ resource "aws_elasticache_subnet_group" "redis" {
 resource "aws_elasticache_replication_group" "redis" {
   depends_on = [aws_elasticache_parameter_group.redis ]
 
-  replication_group_id          = lower(local.redis_cluster_name)
+  replication_group_id          = "${var.global_datastore ? lower(local.redis_cluster_name)-primary : lower(local.redis_cluster_name)}"
   description = "${var.environment}-redis"
   automatic_failover_enabled    = var.automatic_failover_enabled
   multi_az_enabled              = var.multi_az_enabled
@@ -109,4 +109,11 @@ resource "aws_cloudwatch_metric_alarm" "cache_memory" {
 
   alarm_actions = [aws_sns_topic.redis.arn]
 
+}
+
+resource "aws_elasticache_global_replication_group" "global_datastore" {
+  count = var.global_datastore ? 1 : 0
+
+  global_replication_group_id_suffix = "lower(local.redis_cluster_name)"
+  primary_replication_group_id       = aws_elasticache_replication_group.redis.id
 }
