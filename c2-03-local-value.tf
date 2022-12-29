@@ -7,5 +7,5 @@ locals {
     owners = local.owners
     environment = local.environment
   }
-  redis_cluster_name = "${var.global_datastore ? lower(local.name)-primary : lower(local.name)}"
+  redis_cluster_name = "${var.global_datastore ? local.name-primary : local.name}"
 } 
