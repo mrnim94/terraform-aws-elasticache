@@ -22,7 +22,7 @@ resource "aws_elasticache_parameter_group" "redis" {
 resource "aws_elasticache_subnet_group" "redis" {
   count = var.create_elasticache_subnet_group ? 1 : 0
   name       = "subnet-group-redis"
-  subnet_ids = data.terraform_remote_state.vpc.outputs.private_subnets
+  subnet_ids = var.private_subnets
 }
 
 # #

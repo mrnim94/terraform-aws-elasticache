@@ -107,3 +107,9 @@ variable "create_elasticache_subnet_group" {
   default = false
   description = "- (Required) The ID of the VPC is to create Security Group."
 }
+
+variable "private_subnets" {
+  type = list
+  description = "- (Optional) A list of private subnets inside the VPC."
+  default = []
+}
