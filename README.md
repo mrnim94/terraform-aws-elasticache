@@ -83,3 +83,33 @@ module "elasticache" {
 I have a post to explain much knowledge about Redis or Elasticache.
 
 [![Image](https://nimtechnology.com/wp-content/uploads/2022/12/image-174.png "[ElastiCache] Provisioning Redis on AWS so quickly by terraform. ")](https://nimtechnology.com/2022/12/29/elasticache-provisioning-redis-on-aws-so-quickly-by-terraform/)
+
+## Case 3: If you want to enable the global datastore for Elasticache and create the primary Redis, I will need add `global_datastore = true`
+
+```hcl
+# Terraform Remote State Datasource - Remote Backend AWS S3
+data "terraform_remote_state" "vpc" {
+  backend = "s3"
+  config = {
+    bucket = "terraform-on-aws-eks-nim"
+    key    = "dev/vpc-redis-2/terraform.tfstate"
+    region = var.aws_region
+  }
+}
+
+module "elasticache" {
+  source  = "mrnim94/elasticache/aws"
+  version = "1.1.4"
+
+  aws_region = var.aws_region
+  business_divsion = "nimtechnology"
+  environment = "dev"
+  num_nodes = "2"
+  elasticache_subnet_group_name = data.terraform_remote_state.vpc.outputs.elasticache_subnet_group_name
+  engine_version = "5.0.6"
+  family = "redis5.0"
+  instance_type = "cache.m5.large"
+  vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
+  global_datastore = true #Pay attention to this
+}
+```
