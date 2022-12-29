@@ -1,4 +1,5 @@
 # terraform-aws-elasticache
+# You can refer to this module to provisioning Redis and enable Global Datastore for Elasticache.
 
 ## Case 1: Get VPC ID and Subnet Private for Remote State  then Create elasticache subnet group
 
