@@ -101,3 +101,9 @@ variable "vpc_id" {
   description = "- (Required) The ID of the VPC is to create Security Group."
 }
 
+
+variable "create_elasticache_subnet_group" {
+  type = bool
+  default = false
+  description = "- (Required) The ID of the VPC is to create Security Group."
+}

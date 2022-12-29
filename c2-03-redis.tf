@@ -18,6 +18,13 @@ resource "aws_elasticache_parameter_group" "redis" {
   }
 }
 
+#https://medium.com/swlh/terraform-how-to-use-conditionals-for-dynamic-resources-creation-6a191e041857
+resource "aws_elasticache_subnet_group" "redis" {
+  count = var.create_elasticache_subnet_group ? 1 : 0
+  name       = "subnet-group-redis"
+  subnet_ids = data.terraform_remote_state.vpc.outputs.private_subnets
+}
+
 # #
 # # ElastiCache resources
 # #
@@ -33,7 +40,7 @@ resource "aws_elasticache_replication_group" "redis" {
   node_type                     = var.instance_type
   engine_version                = var.engine_version
   parameter_group_name          = aws_elasticache_parameter_group.redis.name
-  subnet_group_name             = var.elasticache_subnet_group_name
+  subnet_group_name             = "${var.create_elasticache_subnet_group ? aws_elasticache_subnet_group.redis.name : var.elasticache_subnet_group_name}"
   security_group_ids            = [aws_security_group.redis.id]
   maintenance_window            = var.maintenance_window
   notification_topic_arn        = aws_sns_topic.redis.arn
