@@ -31,7 +31,7 @@ resource "aws_elasticache_subnet_group" "redis" {
 
 module "elasticache" {
   source  = "mrnim94/elasticache/aws"
-  version = "1.0.4"
+  version = "1.0.6"
 
   aws_region = var.aws_region
   business_divsion = "nimtechnology"
@@ -42,6 +42,7 @@ module "elasticache" {
   instance_type = "cache.t2.micro"
   vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
   private_subnets = data.terraform_remote_state.vpc.outputs.private_subnets
+  # Pay attention below the line.
   create_elasticache_subnet_group = true
 }
 ```
@@ -65,7 +66,7 @@ data "terraform_remote_state" "vpc" {
 
 module "elasticache" {
   source  = "mrnim94/elasticache/aws"
-  version = "1.0.1"
+  version = "1.0.6"
 
   aws_region = var.aws_region
   business_divsion = "nimtechnology"
