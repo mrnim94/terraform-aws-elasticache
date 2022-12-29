@@ -40,7 +40,7 @@ resource "aws_elasticache_replication_group" "redis" {
   node_type                     = var.instance_type
   engine_version                = var.engine_version
   parameter_group_name          = aws_elasticache_parameter_group.redis.name
-  subnet_group_name             = "${var.create_elasticache_subnet_group ? aws_elasticache_subnet_group.redis[1].name : var.elasticache_subnet_group_name}"
+  subnet_group_name             = "${var.create_elasticache_subnet_group ? aws_elasticache_subnet_group.redis[0].name : var.elasticache_subnet_group_name}"
   security_group_ids            = [aws_security_group.redis.id]
   maintenance_window            = var.maintenance_window
   notification_topic_arn        = aws_sns_topic.redis.arn
