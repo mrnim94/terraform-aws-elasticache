@@ -92,7 +92,7 @@ variable "transit_encryption_enabled" {
 variable "elasticache_subnet_group_name" {
   type = string
   default = "Unknown"
-  description = "- (Required) Name of the cache subnet group to be used for the replication group."
+  description = "- (Optional) Name of the cache subnet group to be used for the replication group."
 }
 
 variable "vpc_id" {
