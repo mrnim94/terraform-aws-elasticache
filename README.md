@@ -32,7 +32,7 @@ resource "aws_elasticache_subnet_group" "redis" {
 
 module "elasticache" {
   source  = "mrnim94/elasticache/aws"
-  version = "1.0.6"
+  version = "1.1.5"
 
   aws_region = var.aws_region
   business_divsion = "nimtechnology"
@@ -67,7 +67,7 @@ data "terraform_remote_state" "vpc" {
 
 module "elasticache" {
   source  = "mrnim94/elasticache/aws"
-  version = "1.0.6"
+  version = "1.1.5"
 
   aws_region = var.aws_region
   business_divsion = "nimtechnology"
@@ -100,7 +100,7 @@ data "terraform_remote_state" "vpc" {
 
 module "elasticache" {
   source  = "mrnim94/elasticache/aws"
-  version = "1.1.4"
+  version = "1.1.5"
 
   aws_region = var.aws_region
   business_divsion = "nimtechnology"
