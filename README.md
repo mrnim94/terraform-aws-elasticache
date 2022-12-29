@@ -31,17 +31,18 @@ resource "aws_elasticache_subnet_group" "redis" {
 
 module "elasticache" {
   source  = "mrnim94/elasticache/aws"
-  version = "1.0.1"
+  version = "1.0.4"
 
   aws_region = var.aws_region
   business_divsion = "nimtechnology"
   environment = "dev"
   num_nodes = "2"
-  elasticache_subnet_group_name = aws_elasticache_subnet_group.redis.name
   engine_version = "5.0.6"
   family = "redis5.0"
   instance_type = "cache.t2.micro"
   vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
+  private_subnets = data.terraform_remote_state.vpc.outputs.private_subnets
+  create_elasticache_subnet_group = true
 }
 ```
 

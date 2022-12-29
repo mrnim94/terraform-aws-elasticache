@@ -29,6 +29,8 @@ resource "aws_elasticache_subnet_group" "redis" {
 # # ElastiCache resources
 # #
 resource "aws_elasticache_replication_group" "redis" {
+  depends_on = [aws_elasticache_parameter_group.redis ]
+
   replication_group_id          = lower(local.redis_cluster_name)
   description = "${var.environment}-redis"
   automatic_failover_enabled    = var.automatic_failover_enabled
