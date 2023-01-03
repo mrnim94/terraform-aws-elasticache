@@ -3,5 +3,4 @@ resource "aws_elasticache_global_replication_group" "global_datastore" {
 
   global_replication_group_id_suffix = lower(local.name)
   primary_replication_group_id       = aws_elasticache_replication_group.redis.id
-  parameter_group_name = aws_elasticache_parameter_group.redis.name
 }
