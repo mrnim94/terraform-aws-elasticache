@@ -21,7 +21,7 @@ resource "aws_elasticache_parameter_group" "redis" {
 #https://medium.com/swlh/terraform-how-to-use-conditionals-for-dynamic-resources-creation-6a191e041857
 resource "aws_elasticache_subnet_group" "redis" {
   count = var.create_elasticache_subnet_group ? 1 : 0
-  name       = "subnet-group-redis"
+  name       = "subnet-group-${lower(local.redis_cluster_name)}"
   subnet_ids = var.private_subnets
 }
 
