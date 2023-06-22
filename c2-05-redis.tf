@@ -5,7 +5,7 @@ resource "aws_sns_topic" "redis" {
 
 # #https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_parameter_group
 resource "aws_elasticache_parameter_group" "redis" {
-  name   = "cache-params"
+  name   = "cache-params-${lower(local.redis_cluster_name)}"
   family = var.family
 
   parameter {
