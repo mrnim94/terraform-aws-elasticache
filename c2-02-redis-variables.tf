@@ -39,6 +39,14 @@ variable "cluster_mode" {
 }
 
 //checked
+variable "apply_immediately" {
+  type        = string
+  default     = "false"
+  description = "- (Optional) Specifies whether cluster mode is enabled or disabled. Valid values are enabled or disabled or compatible."
+}
+
+
+//checked
 variable "multi_az_enabled" {
   default     = true
   description = "- (Optional) Specifies whether to enable Multi-AZ Support for the replication group. If true, automatic_failover_enabled must also be enabled. Defaults to true."

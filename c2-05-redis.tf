@@ -36,7 +36,8 @@ resource "aws_elasticache_replication_group" "redis" {
   automatic_failover_enabled = var.automatic_failover_enabled
   multi_az_enabled           = var.multi_az_enabled
 
-  cluster_mode = var.cluster_mode
+  cluster_mode      = var.cluster_mode
+  apply_immediately = var.apply_immediately
 
   #availability_zones            =  var.availability_zones == [] ? null : var.availability_zones
   #   preferred_cache_cluster_azs  = module.vpc.azs
