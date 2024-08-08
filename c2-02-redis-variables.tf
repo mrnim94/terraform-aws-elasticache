@@ -42,7 +42,7 @@ variable "cluster_mode" {
 variable "apply_immediately" {
   type        = string
   default     = "false"
-  description = "- (Optional) Specifies whether cluster mode is enabled or disabled. Valid values are enabled or disabled or compatible."
+  description = "- (Optional) Specifies whether any modifications are applied immediately, or during the next maintenance window. Default is false"
 }
 
 
