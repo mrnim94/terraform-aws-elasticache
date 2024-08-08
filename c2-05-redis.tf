@@ -14,6 +14,10 @@ resource "aws_elasticache_parameter_group" "redis" {
   #   value = "yes"
   # }
   parameter {
+    name  = "cluster-enabled"
+    value = "yes"
+  }
+  parameter {
     name  = "notify-keyspace-events"
     value = "KEA"
   }
