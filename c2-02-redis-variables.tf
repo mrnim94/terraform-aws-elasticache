@@ -33,7 +33,8 @@ variable "automatic_failover_enabled" {
 
 //checked
 variable "cluster_mode" {
-  default     = false
+  type        = string
+  default     = "disabled"
   description = "- (Optional) Specifies whether cluster mode is enabled or disabled. Valid values are enabled or disabled or compatible."
 }
 
