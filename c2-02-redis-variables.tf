@@ -40,8 +40,8 @@ variable "cluster_mode" {
 
 //checked
 variable "apply_immediately" {
-  type        = string
-  default     = "false"
+  type        = bool
+  default     = false
   description = "- (Optional) Specifies whether any modifications are applied immediately, or during the next maintenance window. Default is false"
 }
 
