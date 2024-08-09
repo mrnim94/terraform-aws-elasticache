@@ -5,7 +5,7 @@ resource "aws_sns_topic" "redis" {
 
 # #https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_parameter_group
 resource "aws_elasticache_parameter_group" "redis" {
-  name   = "cache-params-${lower(local.redis_cluster_name)}"
+  name   = "cache-params-${lower(local.redis_cluster_name)}-test"
   family = var.family
 
   ### Parameter cannot be modify in redis7 (default is enabled)
