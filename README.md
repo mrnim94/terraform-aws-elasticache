@@ -115,7 +115,7 @@ module "elasticache" {
 }
 ```
 
-## Case 4: Create Elastiache with `cluster_mode = "enabled"`
+## Case 4: Create Elasticache with `cluster_mode = "enabled"`
 
 ```hcl
 # Terraform Remote State Datasource - Remote Backend AWS S3
