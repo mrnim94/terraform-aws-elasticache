@@ -39,12 +39,9 @@ variable "cluster_mode" {
 }
 
 variable "parameters" {
-  description = "A map of configuration parameters for the AWS Elasticache Parameter Group. Each key represents the parameter name, and the corresponding value sets the parameter's configuration."
-  type        = map(string)
-  default = {
-    "cluster-enabled"        = "no"
-    "notify-keyspace-events" = "KEA"
-  }
+  description = "List of ElastiCache parameters to apply"
+  type        = list(map(string))
+  default     = []
 }
 
 //checked
