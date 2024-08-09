@@ -114,3 +114,45 @@ module "elasticache" {
   global_datastore = true #Pay attention to this
 }
 ```
+
+## Case 4: Create Elastiache with `cluster_mode = "enabled"`
+
+```hcl
+# Terraform Remote State Datasource - Remote Backend AWS S3
+data "terraform_remote_state" "vpc" {
+  backend = "s3"
+  config = {
+    bucket = "terraform-on-aws-eks-nim"
+    key    = "dev/vpc-redis-2/terraform.tfstate"
+    region = var.aws_region
+  }
+}
+
+module "elasticache" {
+  source  = "mrnim94/elasticache/aws"
+  version = "1.2.2"
+
+  aws_region = var.aws_region
+  business_divsion = "nimtechnology"
+  environment = "dev"
+  num_nodes = "2"
+  elasticache_subnet_group_name = data.terraform_remote_state.vpc.outputs.elasticache_subnet_group_name
+  engine_version = "5.0.6"
+  family = "redis5.0"
+  instance_type = "cache.m5.large"
+  vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
+
+  cluster_mode = "enabled"
+
+  parameters = [
+    {
+      name  = "cluster-enabled" # This parameter value must be `yes`
+      value = "yes"
+    },
+    {
+      name  = "notify-keyspace-events"
+      value = "KEA"
+    }
+  ]
+}
+```
