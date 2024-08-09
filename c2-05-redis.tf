@@ -8,20 +8,6 @@ resource "aws_elasticache_parameter_group" "redis" {
   name   = "cache-params-${lower(local.redis_cluster_name)}"
   family = var.family
 
-  ### Parameter cannot be modify in redis7 (default is enabled)
-  # parameter {
-  #   name  = "activerehashing"
-  #   value = "yes"
-  # }
-  # parameter {
-  #   name  = "cluster-enabled"
-  #   value = "yes"
-  # }
-  # parameter {
-  #   name  = "notify-keyspace-events"
-  #   value = "KEA"
-  # }
-
   lifecycle {
     create_before_destroy = true
   }
@@ -59,7 +45,7 @@ resource "aws_elasticache_replication_group" "redis" {
   apply_immediately = var.apply_immediately
 
   #availability_zones            =  var.availability_zones == [] ? null : var.availability_zones
-  #   preferred_cache_cluster_azs  = module.vpc.azs
+  #preferred_cache_cluster_azs  = module.vpc.azs
 
   num_cache_clusters     = var.num_nodes
   node_type              = var.instance_type
