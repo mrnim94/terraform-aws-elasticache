@@ -21,6 +21,11 @@ resource "aws_elasticache_parameter_group" "redis" {
     name  = "notify-keyspace-events"
     value = "KEA"
   }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
 }
 
 #https://medium.com/swlh/terraform-how-to-use-conditionals-for-dynamic-resources-creation-6a191e041857
