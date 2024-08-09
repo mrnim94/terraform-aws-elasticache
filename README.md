@@ -115,7 +115,7 @@ module "elasticache" {
 }
 ```
 
-## Case 4: Create Elasticache with `cluster_mode = "enabled"`
+## Case 4: Create ElastiCache with `cluster_mode = "enabled"`
 
 ```hcl
 # Terraform Remote State Datasource - Remote Backend AWS S3
@@ -142,7 +142,7 @@ module "elasticache" {
   instance_type = "cache.m5.large"
   vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
 
-  cluster_mode = "enabled" # Enable Elasticache cluster mode
+  cluster_mode = "enabled" # Enable ElastiCache cluster mode
 
   parameters = [
     {
