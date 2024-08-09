@@ -5,7 +5,7 @@ resource "aws_sns_topic" "redis" {
 
 # #https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_parameter_group
 resource "aws_elasticache_parameter_group" "redis" {
-  name   = "cache-params-${lower(local.redis_cluster_name)}-test-changed-named"
+  name   = "cache-params-${lower(local.redis_cluster_name)}"
   family = var.family
 
   ### Parameter cannot be modify in redis7 (default is enabled)
@@ -13,17 +13,23 @@ resource "aws_elasticache_parameter_group" "redis" {
   #   name  = "activerehashing"
   #   value = "yes"
   # }
-  parameter {
-    name  = "cluster-enabled"
-    value = "yes"
-  }
-  parameter {
-    name  = "notify-keyspace-events"
-    value = "KEA"
-  }
+  # parameter {
+  #   name  = "cluster-enabled"
+  #   value = "yes"
+  # }
+  # parameter {
+  #   name  = "notify-keyspace-events"
+  #   value = "KEA"
+  # }
 
   lifecycle {
     create_before_destroy = true
+  }
+
+  for_each = var.parameters
+  parameter {
+    name  = each.key
+    value = each.value
   }
 
 }
