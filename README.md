@@ -142,7 +142,7 @@ module "elasticache" {
   instance_type = "cache.m5.large"
   vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
 
-  cluster_mode = "enabled"
+  cluster_mode = "enabled" # Enable Elasticache cluster mode
 
   parameters = [
     {
