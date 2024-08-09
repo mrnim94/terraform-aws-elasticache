@@ -1,6 +1,10 @@
 # terraform-aws-elasticache
 # You can refer to this module to provisioning Redis and enable Global Datastore for Elasticache.
 
+## [Documentation](https://github.com/mrnim94/terraform-aws-elasticache/blob/master/docs)
+- Upgrade Guides
+  - [Upgrade to v2.x](https://github.com/mrnim94/terraform-aws-elasticache/blob/master/docs/UPGRADE-2.0.md)
+
 ## Case 1: Get VPC ID and Subnet Private for Remote State  then Create elasticache subnet group
 
 ```hcl
@@ -32,7 +36,7 @@ data "terraform_remote_state" "vpc" {
 
 module "elasticache" {
   source  = "mrnim94/elasticache/aws"
-  version = "1.2.2"
+  version = "2.0.0"
 
   aws_region = var.aws_region
   business_divsion = "nimtechnology"
@@ -45,6 +49,16 @@ module "elasticache" {
   private_subnets = data.terraform_remote_state.vpc.outputs.private_subnets
   # Pay attention below the line.
   create_elasticache_subnet_group = true
+  parameters = [
+    {
+      name  = "activerehashing" # This parameter value must be `yes`
+      value = "yes"
+    },
+    {
+      name  = "notify-keyspace-events"
+      value = "KEA"
+    }
+  ]
 }
 ```
 
@@ -67,7 +81,7 @@ data "terraform_remote_state" "vpc" {
 
 module "elasticache" {
   source  = "mrnim94/elasticache/aws"
-  version = "1.2.2"
+  version = "2.0.0"
 
   aws_region = var.aws_region
   business_divsion = "nimtechnology"
@@ -78,6 +92,16 @@ module "elasticache" {
   family = "redis5.0"
   instance_type = "cache.t2.micro"
   vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
+  parameters = [
+    {
+      name  = "activerehashing" # This parameter value must be `yes`
+      value = "yes"
+    },
+    {
+      name  = "notify-keyspace-events"
+      value = "KEA"
+    }
+  ]
 }
 ```
 
@@ -100,7 +124,7 @@ data "terraform_remote_state" "vpc" {
 
 module "elasticache" {
   source  = "mrnim94/elasticache/aws"
-  version = "1.2.2"
+  version = "2.0.0"
 
   aws_region = var.aws_region
   business_divsion = "nimtechnology"
@@ -112,6 +136,16 @@ module "elasticache" {
   instance_type = "cache.m5.large"
   vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
   global_datastore = true #Pay attention to this
+  parameters = [
+    {
+      name  = "activerehashing" # This parameter value must be `yes`
+      value = "yes"
+    },
+    {
+      name  = "notify-keyspace-events"
+      value = "KEA"
+    }
+  ]
 }
 ```
 
@@ -130,7 +164,7 @@ data "terraform_remote_state" "vpc" {
 
 module "elasticache" {
   source  = "mrnim94/elasticache/aws"
-  version = "1.2.2"
+  version = "2.0.0"
 
   aws_region = var.aws_region
   business_divsion = "nimtechnology"
