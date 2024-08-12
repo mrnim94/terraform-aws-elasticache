@@ -190,3 +190,13 @@ module "elasticache" {
   ]
 }
 ```
+
+If you want to migrate from [**Redis Cluster Mode Disabled**](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#redis-cluster-mode-disabled) **to** [**Redis Cluster Mode Enabled**](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#redis-cluster-mode-enabled)
+
+first, you need to upgrade the Redis version to 7.0. Refer to: [Modifying cluster mode - Amazon ElastiCache (Redis OSS)](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/modify-cluster-mode.html)
+
+![](https://github.com/mrnim94/terraform-aws-elasticache/blob/feature/enable-cluster-mode/docs/pictures/aws_elastic_7_0_change_to_cluster_mode.png?raw=true)
+
+Next, you need to change `cluster_mode: compatible` and run `terraform apply`
+
+Final: you need to change `cluster_mode: enable` and run `terraform apply`
