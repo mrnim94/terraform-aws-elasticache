@@ -8,6 +8,10 @@ resource "aws_elasticache_parameter_group" "redis" {
   name   = "cache-params-${lower(local.redis_cluster_name)}"
   family = var.family
 
+  lifecycle {
+    create_before_destroy = true
+  }
+
   dynamic "parameter" {
     for_each = var.parameters
 
