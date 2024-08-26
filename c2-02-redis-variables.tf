@@ -147,7 +147,7 @@ variable "family" {
 variable "parameter_group_name" {
   description = "The name of the parameter group. If `create_parameter_group` is `true`, this is the name assigned to the parameter group created. Otherwise, this is the name of an existing parameter group"
   type        = string
-  default     = null
+  default     = "cache-params-${lower(local.redis_cluster_name)}"
 }
 
 variable "parameters" {

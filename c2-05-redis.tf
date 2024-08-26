@@ -5,7 +5,10 @@ resource "aws_sns_topic" "redis" {
 
 # #https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_parameter_group
 resource "aws_elasticache_parameter_group" "redis" {
-  name   = "cache-params-${lower(local.redis_cluster_name)}"
+  count = var.create_parameter_group ? 1 : 0
+
+  # name   = "cache-params-${lower(local.redis_cluster_name)}"
+  name   = var.parameter_group_name
   family = var.family
 
   lifecycle {
@@ -47,10 +50,11 @@ resource "aws_elasticache_replication_group" "redis" {
   #availability_zones            =  var.availability_zones == [] ? null : var.availability_zones
   #preferred_cache_cluster_azs  = module.vpc.azs
 
-  num_cache_clusters     = var.num_nodes
-  node_type              = var.instance_type
-  engine_version         = var.engine_version
-  parameter_group_name   = aws_elasticache_parameter_group.redis.name
+  num_cache_clusters = var.num_nodes
+  node_type          = var.instance_type
+  engine_version     = var.engine_version
+  # parameter_group_name   = aws_elasticache_parameter_group.redis.name
+  parameter_group_name   = var.parameter_group_name
   subnet_group_name      = var.create_elasticache_subnet_group ? aws_elasticache_subnet_group.redis[0].name : var.elasticache_subnet_group_name
   security_group_ids     = [aws_security_group.redis.id]
   maintenance_window     = var.maintenance_window
