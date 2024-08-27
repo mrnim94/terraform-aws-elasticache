@@ -18,12 +18,6 @@ variable "business_divsion" {
   default     = "SAP"
 }
 
-//checked
-variable "family" {
-  type        = string
-  default     = "redis5.0"
-  description = "(Required) The family of the ElastiCache parameter group."
-}
 
 //checked
 variable "automatic_failover_enabled" {
@@ -36,12 +30,6 @@ variable "cluster_mode" {
   type        = string
   default     = "disabled"
   description = "- (Optional) Specifies whether cluster mode is enabled or disabled. Valid values are enabled or disabled or compatible."
-}
-
-variable "parameters" {
-  description = "List of ElastiCache parameters to apply"
-  type        = list(map(string))
-  default     = []
 }
 
 //checked
@@ -141,3 +129,29 @@ variable "global_datastore" {
   description = "- (Optional) Provides an ElastiCache Global Replication Group resource, which manages replication between two or more Replication Groups in different regions."
 }
 
+################################################################################
+# Parameter Group
+################################################################################
+variable "create_parameter_group" {
+  description = "Determines whether the ElastiCache parameter group will be created or not"
+  type        = bool
+  default     = true
+}
+
+variable "family" {
+  type        = string
+  default     = "redis5.0"
+  description = "(Required) The family of the ElastiCache parameter group."
+}
+
+variable "parameter_group_name" {
+  description = "The name of the parameter group. If `create_parameter_group` is `true`, this is the name assigned to the parameter group created. Otherwise, this is the name of an existing parameter group"
+  type        = string
+  default     = null
+}
+
+variable "parameters" {
+  description = "List of ElastiCache parameters to apply"
+  type        = list(map(string))
+  default     = []
+}
