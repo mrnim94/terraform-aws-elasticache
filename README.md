@@ -1,11 +1,20 @@
 # terraform-aws-elasticache
-# You can refer to this module to provisioning Redis and enable Global Datastore for Elasticache.
+# You can refer to this module to provision Redis and enable Global Datastore for Elasticache.
+
+## Terraform Registry:
+[https://registry.terraform.io/modules/mrnim94/elasticache/aws/latest](https://registry.terraform.io/modules/mrnim94/elasticache/aws/latest)
+
+### Module Downloads  
+![Downloads this week](https://img.shields.io/badge/downloads_this_week-39-blue)  
+![Downloads this month](https://img.shields.io/badge/downloads_this_month-63-blue)  
+![Downloads this year](https://img.shields.io/badge/downloads_this_year-723-blue)  
+![Downloads all time](https://img.shields.io/badge/downloads_all_time-1697-blue)
 
 ## [Documentation](https://github.com/mrnim94/terraform-aws-elasticache/tree/feature/enable-cluster-mode/docs)
 - Upgrade Guides
   - [Upgrade to v2.x](https://github.com/mrnim94/terraform-aws-elasticache/blob/feature/enable-cluster-mode/docs/UPGRADE-2.0.md)
 
-## Case 1: Get VPC ID and Subnet Private for Remote State  then Create elasticache subnet group
+## Case 1: Get VPC ID and Subnet Private for Remote State,  then Create elasticache subnet group
 
 ```hcl
 variable "aws_region" {
