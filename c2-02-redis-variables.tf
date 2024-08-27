@@ -135,7 +135,7 @@ variable "global_datastore" {
 variable "create_parameter_group" {
   description = "Determines whether the ElastiCache parameter group will be created or not"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "family" {
